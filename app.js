@@ -9,12 +9,13 @@ app.get('/', (req, res)=> {
     res.render('index')
 })
 
-const server = app.listen(process.env.PORT || 3000, () => {
+const server = require('http').createServer(app).listen(process.env.PORT || 3000, () => {
     console.log("server is running")
 })
 
 //initialize socket for the server
 const io = socketio(server)
+
 io.on('connection', socket => {
     console.log("New user connected")
 })
